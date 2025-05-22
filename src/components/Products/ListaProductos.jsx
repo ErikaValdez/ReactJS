@@ -9,7 +9,10 @@ const ProductList = ( {carrito,setCarrito}) =>
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((data) => setProductos(data));
+      .then((data) => setProductos(data))
+      .catch((error)=>{
+        console.error("Error fetching data:",error) // FALTA HACER EL SETLOADING
+      });
   }, []); // solo al montar se ejecuta una vez, si quiero que se actualize poner dependencia ejemplo: },[filtro]);
 
     const agregarAlCarrito = (producto) => {
