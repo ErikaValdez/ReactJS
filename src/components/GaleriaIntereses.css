@@ -1,0 +1,14 @@
+.galeria-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .boton-interes {
+    background-color: red;
+    color: white;
+  }
+  
+  .boton-interes.seleccionado {
+    background-color: blue;
+  }

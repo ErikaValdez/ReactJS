@@ -1,0 +1,17 @@
+.container {
+    display: flex; /* Activa flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    width: 100vw; /* Asegura que ocupe el ancho completo */
+    text-align: center;
+    flex-direction: column;
+}
+
+
+.boton-estilizado{
+    color:blueviolet;
+    background-color: aqua;
+}
+
+
