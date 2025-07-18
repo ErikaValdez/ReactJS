@@ -14,22 +14,26 @@ ul{
 }
 
 .container-redes{
-    padding-top: 10px;
+    padding: 5px;
 }
 
 .copyright {
     text-align: center;
-    color: aliceblue;
+    color: black;
 }
 
 .title-footer{
     font-size: 26px;
-    color: white;
+    color: gray;
     font-style: italic;
 }
 .linea {
     width: 90%;
     height: 2px;
-    background-color: #000; /* Color de la línea */
-    margin: 20px 0; /* Espacio alrededor de la línea */
+    background-color:gray; /* Color de la línea */
+    margin: 10px 0; /* Espacio alrededor de la línea */
+}
+
+.items1{
+   top: 50px;   
 }

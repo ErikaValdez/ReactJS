@@ -1,7 +1,8 @@
   import { Boton } from '../boton';
 import './Product.css'
 
-  const Producto = ({image,nombre,price,onAgregar }) => 
+  const Producto = ({image,nombre,price,onAgregar }) => //  image, nombre, price, onAgregar --> son props , valores que pasan al componente desde su componente padre.
+  
 {
     return (
             <div className="contenedor-producto">

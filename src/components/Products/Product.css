@@ -2,42 +2,70 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    background-color: #73ba3e;
+    background-color: var(--bg-primary);
     padding: 20px;
+    min-height: 100vh;
 }
 .contenedor-producto
 {
-  background-color: white;
+  background-color: var(--bg-secondary);
   padding: 15px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px var(--shadow);
   min-height: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
+
+.contenedor-producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 .foto{
   width: 100%;
   max-width: 200px;
-  height: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   margin-bottom: 10px;
-
+  display: block;
 }
 .title{
     font-size: 12px;
-    color: black;
+    color: var(--text-primary);
     padding: 10px;
     margin: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 .title-price{
     font-size: 16px;
-    color: black;
+    color: var(--text-primary);
     padding: 10px;
     margin: 0;
 }
 .boton-estilizado{
     width: 100%;    
     font-size: 12px;
-    height : 40px; ;
+    height: 40px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.boton-estilizado:hover {
+    background-color: var(--accent-hover);
 }

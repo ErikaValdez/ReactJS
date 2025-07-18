@@ -9,11 +9,6 @@ const FooterWeb = () => {
         <div className="footer">
             <h1 className='title-footer'>SiteGeraldine</h1>
             
-            <ul className='items'>
-                <li><a href={"#"}>Home</a></li>
-                <li><a href={"#"}>Galeria</a></li>
-                <li><a href={"#"}>Contactenos</a></li>
-            </ul>
             <div class="linea"></div>
             <ul className='items'>
                 <li><a href={"#"}>Home</a></li>
