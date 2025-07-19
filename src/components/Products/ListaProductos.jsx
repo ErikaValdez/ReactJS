@@ -1,4 +1,5 @@
 import Producto from "./Producto";
+import AgregarProducto from "./AgregarProducto";
 import './Product.css'
 import { useEffect, useState, useContext } from "react";
 import { useCart } from '../../context/CartContext';
@@ -7,17 +8,22 @@ const ProductList = () => {
   const [productos, setProductos] = useState([]);
   const { agregarAlCarrito } = useCart();
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+  const fetchProductos = () => {
+    fetch("https://687ad5f5abb83744b7edf814.mockapi.io/products/producto")
       .then((res) => res.json())
       .then((data) => setProductos(data))
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+  };
+
+  useEffect(() => {
+    fetchProductos();
   }, []);
 
   return (
     <div>
+      <AgregarProducto onProductoAgregado={fetchProductos} />
       <div className="contenedor">
         {productos.map((prod) => (
           <Producto 

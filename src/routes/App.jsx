@@ -8,13 +8,12 @@ import RutaProtegida from './RutaProtegida';
 import { Link } from 'react-router-dom';
 import { AuthProvider, setupAxiosInterceptors } from '../context/AuthContext';
 import { ThemeProvider } from '../context/ThemeContext';
-
+import DetalleProducto from '../components/Products/DetalleProducto';
+import Register from '../pages/Register';
 const App = () => {
   const [carrito, setCarrito] = useState([]);
-  // Configurar el interceptor de axios
   setupAxiosInterceptors();
 
-  // Asegurarse de que el tema se cargue correctamente en el cliente
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
@@ -22,7 +21,7 @@ const App = () => {
   }, []);
 
   if (!mounted) {
-    return null; // o un loader
+    return null; 
   }
 
   return(
@@ -37,6 +36,8 @@ const App = () => {
                 <Carrito listaProductos={carrito} />
               </RutaProtegida>} 
             />
+            <Route exact path='/register' element={<Register />} />
+            <Route exact path='/producto/:id' element={<DetalleProducto />} />
             <Route exact path='*' element={<NotFound/>} />
           </Routes>
         </BrowserRouter>

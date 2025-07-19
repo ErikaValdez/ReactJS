@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login({ email, password });
-      navigate('/'); // Redirige a la página principal después del login
+      navigate('/'); 
     } catch (err) {
       setError('Credenciales inválidas');
     }
@@ -62,6 +62,10 @@ const Login = () => {
               INICIAR SESIÓN
             </Button>
           </Form>
+          <div className="mt-3">
+            <span>¿No tienes cuenta? </span>
+            <Button variant="link" onClick={() => navigate('/register')} style={{padding: 0}}>Regístrate aquí</Button>
+          </div>
         </Card.Body>
         <Card.Footer className="text-muted">
           Si ya tienes una cuenta creada, por favor inicia sesión.
@@ -72,5 +76,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
