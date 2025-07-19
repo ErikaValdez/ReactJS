@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAZ79-EUMDFpgeHhVBxSpAQBx1L_skdRaw",
@@ -20,7 +20,6 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
 
 export function crearUsuario(email, password){
     return(
@@ -99,10 +98,25 @@ export function loginEmailPass(email, password){
         })
     )
 }
+
+// Login que obtiene el rol desde Firestore
+export async function loginConRol(email, password) {
+    // Login normal
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    // Leer rol de Firestore
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const userData = userDoc.data();
+    return {
+        uid: user.uid,
+        email: user.email,
+        role: userData?.role || "cliente"
+    };
+}
+
 /////////////////////////////////////////////////////////////////
 ///////////////////// BASE DE DATOS FIRESTORE  //////// ////////
 ////////////////////////////////////////////////////////////////
-
 
 /* 
 export function crearProducto(producto) {

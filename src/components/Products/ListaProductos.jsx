@@ -1,8 +1,9 @@
 import Producto from "./Producto";
 import AgregarProducto from "./AgregarProducto";
 import './Product.css'
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
 
 const ProductList = () => {
   const [productos, setProductos] = useState([]);
@@ -21,9 +22,13 @@ const ProductList = () => {
     fetchProductos();
   }, []);
 
+  const { user } = useAuth();
+
   return (
     <div>
-      <AgregarProducto onProductoAgregado={fetchProductos} />
+      {user?.role === "admin" && (
+        <AgregarProducto onProductoAgregado={fetchProductos} />
+      )}
       <div className="contenedor">
         {productos.map((prod) => (
           <Producto 
@@ -33,6 +38,14 @@ const ProductList = () => {
             price={prod.price}
             image={prod.image}
             onAgregar={() => agregarAlCarrito(prod)}
+            onEliminar={async (id) => {
+              if(window.confirm('¿Seguro que deseas eliminar este producto?')) {
+                await fetch(`https://687ad5f5abb83744b7edf814.mockapi.io/products/producto/${id}`, {
+                  method: 'DELETE'
+                });
+                fetchProductos();
+              }
+            }}
           />
         ))}
       </div>

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { login, logout, getCurrentUser, setupAxiosInterceptors } from '../auth/authService';
+import { logout, getCurrentUser, setupAxiosInterceptors } from '../auth/authService';
+import { loginConRol } from '../auth/firebase';
 
 export const AuthContext = createContext();
 
@@ -15,7 +16,8 @@ export const AuthProvider = ({ children }) => {
 
   const loginHandler = async (credentials) => {
     try {
-      const userData = await login(credentials);
+      // credentials: { email, password }
+      const userData = await loginConRol(credentials.email, credentials.password);
       setUser(userData);
       return userData;
     } catch (error) {

@@ -6,10 +6,12 @@ import sesion from '../../icons/contrasena.png';
 import { useCart } from '../../context/CartContext';
 import { useTheme } from '../../context/ThemeContext';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
   const [toggleOrders, setToggleOrders] = useState(false);
   const { carrito } = useCart();
+  const { user, logout } = useAuth();
   
   // Calcular el total de ítems en el carrito
   const totalItems = carrito.reduce((total, producto) => total + (producto.cantidad || 1), 0);
@@ -57,7 +59,12 @@ const Header = () => {
                   )}
                 </Link>
               </li>
-          </ul>
+          {user && (
+            <button onClick={logout} style={{ marginLeft: 16, padding: '6px 16px', background: '#ff5252', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer' }}>
+              Cerrar sesión
+            </button>
+          )}
+        </ul>
       </header>
       
   );
